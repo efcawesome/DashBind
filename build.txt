@@ -1,4 +1,4 @@
 displayName = Dash Keybind
 author = efcawesome
-version = 0.1
+version = 1.0
 homepage = https://discord.gg/ZdNzyEg

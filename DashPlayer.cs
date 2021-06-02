@@ -17,7 +17,29 @@ namespace DashBind
         bool dashingRight = false;
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            if(dashingLeft)
+            if (DashBind.DashKey.JustPressed)
+            {
+                if (player.direction == -1 && player.controlRight)
+                {
+                    player.controlRight = false;
+                    dashingRight = true;
+                }
+                else if (player.direction == 1 && player.controlLeft)
+                {
+                    player.controlLeft = false;
+                    dashingLeft = true;
+                }
+                else if (player.direction == -1)
+                {
+                    dashingLeft = true;
+                }
+                else if (player.direction == 1)
+                {
+                    dashingRight = true;
+                }
+            }
+
+            if (dashingLeft)
             {
                 dashingRight = false;
                 rightTimer = 0;
@@ -51,27 +73,6 @@ namespace DashBind
                     player.releaseRight = true;
                     rightTimer = 0;
                     dashingRight = false;
-                }
-            }
-
-            if (DashBind.DashKey.JustPressed)
-            {
-                if (player.direction == -1)
-                {
-                    player.controlLeft = true;
-                    player.releaseLeft = true;
-                    player.controlLeft = false;
-                    player.releaseLeft = false;
-                    dashingLeft = true;
-                    
-                }
-                else if (player.direction == 1)
-                {
-                    player.controlRight = true;
-                    player.releaseRight = true;
-                    player.controlRight = false;
-                    player.releaseRight = false;
-                    dashingRight = true;
                 }
             }
         }
